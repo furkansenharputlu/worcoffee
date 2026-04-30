@@ -1,0 +1,16 @@
+{
+  "name": "worcoffee",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A community-curated map of coffee shops & spots that are great for remote work.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate.mjs",
+    "dev": "node scripts/build.mjs && npx --yes serve dist"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}

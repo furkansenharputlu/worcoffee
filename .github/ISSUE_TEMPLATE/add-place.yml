@@ -1,0 +1,54 @@
+name: ☕ Add a place
+description: Suggest a new coffee shop / café / spot for remote work.
+title: "[Add place] <name> — <city>, <country>"
+labels: ["new-place"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing a spot! Fill in what you can — we'll turn it into a PR.
+        Prefer to do it yourself? See [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+  - type: input
+    id: name
+    attributes: { label: Place name, placeholder: "Federal Coffee Istanbul" }
+    validations: { required: true }
+  - type: input
+    id: country
+    attributes: { label: Country, placeholder: "Turkey" }
+    validations: { required: true }
+  - type: input
+    id: city
+    attributes: { label: City, placeholder: "Istanbul" }
+    validations: { required: true }
+  - type: input
+    id: address
+    attributes: { label: Address }
+    validations: { required: true }
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options: [cafe, coworking, library, hotel-lobby, restaurant, other]
+    validations: { required: true }
+  - type: input
+    id: maps
+    attributes: { label: Google Maps link }
+  - type: input
+    id: instagram
+    attributes: { label: Instagram URL }
+  - type: input
+    id: website
+    attributes: { label: Website }
+  - type: textarea
+    id: ratings
+    attributes:
+      label: Ratings (1-5)
+      value: |
+        wifi:
+        power:
+        noise (1=loud, 5=quiet):
+        comfort:
+    validations: { required: true }
+  - type: textarea
+    id: notes
+    attributes: { label: Anything else worth knowing? }

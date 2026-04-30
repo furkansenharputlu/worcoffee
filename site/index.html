@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WorCoffee — coffee places for remote workers</title>
+  <meta name="description" content="A community-curated map of coffee shops, cafés, and spots that are great for remote work." />
+  <meta property="og:title" content="WorCoffee" />
+  <meta property="og:description" content="Coffee places for remote workers, by remote workers." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%98%95%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1>☕ WorCoffee</h1>
+      <p class="tag">Coffee places for remote workers, by remote workers.</p>
+      <p class="meta">
+        <span id="stats">Loading…</span> ·
+        <a href="https://github.com/furkansenharputlu/worcoffee" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="https://github.com/furkansenharputlu/worcoffee/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Add a place</a>
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="filters">
+      <input id="q" type="search" placeholder="Search by name, tag, address…" autocomplete="off" />
+      <select id="country"><option value="">All countries</option></select>
+      <select id="city"><option value="">All cities</option></select>
+      <select id="type">
+        <option value="">All types</option>
+        <option>cafe</option>
+        <option>coworking</option>
+        <option>library</option>
+        <option>hotel-lobby</option>
+        <option>restaurant</option>
+        <option>other</option>
+      </select>
+    </section>
+
+    <section id="results" class="grid"></section>
+
+    <template id="card-tpl">
+      <article class="card">
+        <header>
+          <h3 class="name"></h3>
+          <span class="type"></span>
+        </header>
+        <p class="loc"></p>
+        <p class="desc"></p>
+        <ul class="ratings"></ul>
+        <p class="tags"></p>
+        <footer class="links"></footer>
+      </article>
+    </template>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p>
+        Open source · MIT licensed ·
+        Not on GitHub? DM <a href="https://instagram.com/furkansnhrptlu" target="_blank" rel="noopener">@furkansnhrptlu</a> on Instagram and we'll add your place.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

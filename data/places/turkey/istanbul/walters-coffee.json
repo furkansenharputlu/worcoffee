@@ -1,0 +1,18 @@
+{
+  "name": "Walter's Coffee Roastery",
+  "country": "Turkey",
+  "city": "Istanbul",
+  "address": "Caferağa, Kadıköy",
+  "description": "Breaking-Bad themed roastery on the Asian side. Strong coffee, decent wifi.",
+  "type": "cafe",
+  "rating": { "wifi": 4, "power": 4, "noise": 3, "comfort": 4 },
+  "hours": "Mon-Sun 09:00-23:00",
+  "price": "$$",
+  "tags": ["themed", "roastery", "laptop-friendly"],
+  "links": {
+    "google_maps": "https://maps.google.com/?q=Walter%27s+Coffee+Roastery+Kadikoy",
+    "instagram": "https://instagram.com/walterscoffeeroastery"
+  },
+  "coords": { "lat": 40.9889, "lng": 29.0258 },
+  "submitted_by": "furkansenharputlu"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Hoxton Holborn Lobby",
+  "country": "United Kingdom",
+  "city": "London",
+  "address": "199-206 High Holborn, WC1V 7BD",
+  "description": "Hotel lobby with huge tables, fast wifi, plenty of plugs. Free for anyone.",
+  "type": "hotel-lobby",
+  "rating": { "wifi": 5, "power": 5, "noise": 3, "comfort": 4 },
+  "hours": "24/7",
+  "price": "$$",
+  "tags": ["free-seating", "fast-wifi", "long-stay"],
+  "links": {
+    "google_maps": "https://maps.google.com/?q=The+Hoxton+Holborn",
+    "website": "https://thehoxton.com/london/holborn/"
+  },
+  "coords": { "lat": 51.5176, "lng": -0.1196 },
+  "submitted_by": "furkansenharputlu"
+}

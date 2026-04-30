@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WorCoffee Place",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "country", "city", "address", "rating"],
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "country": { "type": "string", "minLength": 2 },
+    "city": { "type": "string", "minLength": 1 },
+    "address": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["cafe", "coworking", "library", "hotel-lobby", "restaurant", "other"]
+    },
+    "rating": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wifi", "power", "noise", "comfort"],
+      "properties": {
+        "wifi":    { "type": "integer", "minimum": 1, "maximum": 5, "description": "1=poor, 5=fiber-fast" },
+        "power":   { "type": "integer", "minimum": 1, "maximum": 5, "description": "1=no outlets, 5=plenty" },
+        "noise":   { "type": "integer", "minimum": 1, "maximum": 5, "description": "1=loud, 5=quiet" },
+        "comfort": { "type": "integer", "minimum": 1, "maximum": 5, "description": "1=bad chairs, 5=ergonomic" }
+      }
+    },
+    "hours": { "type": "string", "description": "Free-form opening hours, e.g. 'Mon-Fri 8-20'" },
+    "price": { "type": "string", "enum": ["$", "$$", "$$$", "$$$$"] },
+    "tags":  { "type": "array", "items": { "type": "string" } },
+    "links": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "google_maps": { "type": "string", "format": "uri" },
+        "instagram":   { "type": "string", "format": "uri" },
+        "website":     { "type": "string", "format": "uri" },
+        "menu":        { "type": "string", "format": "uri" }
+      }
+    },
+    "coords": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lat", "lng"],
+      "properties": {
+        "lat": { "type": "number", "minimum": -90,  "maximum": 90 },
+        "lng": { "type": "number", "minimum": -180, "maximum": 180 }
+      }
+    },
+    "submitted_by": { "type": "string", "description": "GitHub handle of contributor" }
+  }
+}

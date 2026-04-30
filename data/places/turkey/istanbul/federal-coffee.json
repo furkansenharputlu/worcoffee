@@ -1,0 +1,19 @@
+{
+  "name": "Federal Coffee Istanbul",
+  "country": "Turkey",
+  "city": "Istanbul",
+  "address": "Tomtom Mah., Beyoğlu",
+  "description": "Spacious cafe in Karaköy popular with remote workers and digital nomads.",
+  "type": "cafe",
+  "rating": { "wifi": 4, "power": 3, "noise": 3, "comfort": 4 },
+  "hours": "Mon-Sun 08:00-22:00",
+  "price": "$$",
+  "tags": ["specialty-coffee", "laptop-friendly", "brunch"],
+  "links": {
+    "google_maps": "https://maps.google.com/?q=Federal+Coffee+Istanbul",
+    "instagram": "https://instagram.com/federalcoffeecompany",
+    "website": "https://federalcoffee.com.tr"
+  },
+  "coords": { "lat": 41.0322, "lng": 28.9774 },
+  "submitted_by": "furkansenharputlu"
+}
