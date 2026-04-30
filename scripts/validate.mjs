@@ -7,7 +7,7 @@ const PLACES_DIR = join(ROOT, "data", "places");
 
 const REQUIRED = ["name", "country", "city", "address", "rating"];
 const RATING_KEYS = ["wifi", "power", "noise", "comfort"];
-const VALID_TYPES = ["cafe", "coworking", "library", "hotel-lobby", "restaurant", "other"];
+const VALID_TYPES = ["cafe", "coworking", "library", "study-spot", "hotel-lobby", "restaurant", "other"];
 const VALID_PRICE = ["$", "$$", "$$$", "$$$$"];
 const VALID_LINK_KEYS = ["google_maps", "instagram", "website", "menu"];
 const I18N_FIELDS = ["name_i18n", "country_i18n", "city_i18n", "address_i18n", "description_i18n"];
@@ -69,6 +69,17 @@ function validate(place, file) {
     for (const [lang, val] of Object.entries(place[f])) {
       if (!LANG_RE.test(lang)) errors.push(`${f}.${lang} is not a valid language code`);
       if (typeof val !== "string" || !val.trim()) errors.push(`${f}.${lang} must be a non-empty string`);
+    }
+  }
+
+  if (place.submitted_by !== undefined && typeof place.submitted_by !== "string") {
+    const s = place.submitted_by;
+    const PLATFORMS = ["instagram", "github", "twitter", "website", "other"];
+    if (typeof s !== "object" || Array.isArray(s)) {
+      errors.push("submitted_by must be a string or { platform, handle }");
+    } else {
+      if (!PLATFORMS.includes(s.platform)) errors.push(`submitted_by.platform must be one of ${PLATFORMS.join(", ")}`);
+      if (typeof s.handle !== "string" || !s.handle.trim()) errors.push("submitted_by.handle must be a non-empty string");
     }
   }
 

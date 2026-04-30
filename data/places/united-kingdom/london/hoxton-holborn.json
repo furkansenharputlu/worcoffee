@@ -17,5 +17,5 @@
     "website": "https://thehoxton.com/london/holborn/"
   },
   "coords": { "lat": 51.5176, "lng": -0.1196 },
-  "submitted_by": "furkansenharputlu"
+  "submitted_by": { "platform": "github", "handle": "furkansenharputlu" }
 }

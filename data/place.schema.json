@@ -18,7 +18,7 @@
     "description_i18n": { "type": "object", "additionalProperties": { "type": "string" } },
     "type": {
       "type": "string",
-      "enum": ["cafe", "coworking", "library", "hotel-lobby", "restaurant", "other"]
+      "enum": ["cafe", "coworking", "library", "study-spot", "hotel-lobby", "restaurant", "other"]
     },
     "rating": {
       "type": "object",
@@ -53,6 +53,19 @@
         "lng": { "type": "number", "minimum": -180, "maximum": 180 }
       }
     },
-    "submitted_by": { "type": "string" }
+    "submitted_by": {
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["platform", "handle"],
+          "properties": {
+            "platform": { "type": "string", "enum": ["instagram", "github", "twitter", "website", "other"] },
+            "handle": { "type": "string", "minLength": 1 }
+          }
+        }
+      ]
+    }
   }
 }

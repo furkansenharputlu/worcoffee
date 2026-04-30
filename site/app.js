@@ -108,6 +108,33 @@
     return t[`type_${p.type.replace(/-/g, "_")}`] ?? p.type;
   }
 
+  const SUBMITTER_ICONS = { instagram: "📷", github: "🐙", twitter: "🐦", website: "🌐", other: "👤" };
+  const ICONS = window.WORCOFFEE_ICONS;
+  const LINK_ICON_KEY = { google_maps: "maps", instagram: "instagram", website: "website", menu: "menu" };
+  const SUBMITTER_ICON_KEY = { instagram: "instagram", github: "github", twitter: "twitter", website: "website", other: "user" };
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  }
+  function renderSubmitter(s) {
+    if (!s) return "";
+    const iconFor = (k) => ICONS[SUBMITTER_ICON_KEY[k] ?? "user"] ?? ICONS.user;
+    if (typeof s === "string") {
+      return `<span class="ic">${ICONS.user}</span><span>${escapeHtml(s)}</span>`;
+    }
+    const handle = String(s.handle || "").replace(/^@+/, "").trim();
+    if (!handle) return "";
+    let url = null, label = handle;
+    if (s.platform === "instagram") { url = `https://instagram.com/${handle}`; label = "@" + handle; }
+    else if (s.platform === "github") { url = `https://github.com/${handle}`; label = handle; }
+    else if (s.platform === "twitter") { url = `https://x.com/${handle}`; label = "@" + handle; }
+    else if (s.platform === "website" || /^https?:\/\//i.test(handle)) { url = handle; label = handle.replace(/^https?:\/\//, "").replace(/\/$/, ""); }
+    const ic = `<span class="ic">${iconFor(s.platform)}</span>`;
+    return url
+      ? `${ic}<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`
+      : `${ic}<span>${escapeHtml(label)}</span>`;
+  }
+
   function render(list) {
     $results.innerHTML = "";
     $stats.textContent = t.stats(list.length, data.count);
@@ -138,9 +165,13 @@
         if (!url) continue;
         const a = document.createElement("a");
         a.href = url; a.target = "_blank"; a.rel = "noopener";
-        a.textContent = label;
+        a.className = "link-pill";
+        a.innerHTML = `<span class="ic">${ICONS[LINK_ICON_KEY[k]] ?? ""}</span><span>${escapeHtml(label)}</span>`;
         links.appendChild(a);
       }
+      const $sub = node.querySelector(".submitter");
+      const sub = renderSubmitter(p.submitted_by);
+      if (sub) { $sub.innerHTML = `${t.added_by} ${sub}`; } else { $sub.remove(); }
       $results.appendChild(node);
     }
   }
@@ -179,4 +210,98 @@
   $type.addEventListener("change", apply);
 
   apply();
+
+  // ---------- Add place form ----------
+  const $dialog = document.getElementById("add-dialog");
+  const $form = document.getElementById("add-form");
+  const $toast = document.getElementById("toast");
+  const $btn = document.getElementById("open-form-btn");
+  const $btnLink = document.getElementById("open-form");
+
+  function openForm(e) { e?.preventDefault(); $dialog.showModal(); }
+  $btn?.addEventListener("click", openForm);
+  $btnLink?.addEventListener("click", openForm);
+  document.getElementById("close-form").addEventListener("click", () => $dialog.close());
+  document.getElementById("cancel-form").addEventListener("click", () => $dialog.close());
+
+  // Inject GitHub icon into the developer banner.
+  const $devIcon = document.getElementById("dev-hint-icon");
+  if ($devIcon) $devIcon.innerHTML = ICONS.github;
+
+  // Adapt the submitter placeholder to the chosen platform.
+  const $submitter = $form.querySelector('input[name="submitter"]');
+  const SUBMITTER_PLACEHOLDERS = {
+    instagram: "@kullaniciadi",
+    github: "kullaniciadi",
+    other: "isim veya link / name or link",
+  };
+  for (const radio of $form.querySelectorAll('input[name="submitter_platform"]')) {
+    radio.addEventListener("change", () => {
+      $submitter.placeholder = SUBMITTER_PLACEHOLDERS[radio.value] ?? "";
+    });
+  }
+
+  function buildMessage(d) {
+    const lines = [
+      "☕ WorCoffee — yeni mekân / new place",
+      "",
+      `📍 ${d.name}`,
+      `🌍 ${d.city}, ${d.country}`,
+      `🏠 ${d.address}`,
+    ];
+    if (d.type) lines.push(`🏷️ ${d.type}`);
+    lines.push(
+      "",
+      `📶 wifi: ${d.wifi}/5`,
+      `🔌 priz/power: ${d.power}/5`,
+      `🤫 sessizlik/quiet: ${d.noise}/5`,
+      `🪑 konfor/comfort: ${d.comfort}/5`,
+    );
+    if (d.description?.trim()) lines.push("", `📝 ${d.description.trim()}`);
+    if (d.maps?.trim())        lines.push("", `🗺️ ${d.maps.trim()}`);
+    if (d.instagram?.trim())   lines.push(`📷 ${d.instagram.trim()}`);
+    if (d.website?.trim())     lines.push(`🌐 ${d.website.trim()}`);
+    if (d.submitter?.trim()) {
+      const platform = d.submitter_platform || "other";
+      const icon = platform === "instagram" ? "📷" : platform === "github" ? "🐙" : "👤";
+      const label = platform === "instagram" ? "Instagram" : platform === "github" ? "GitHub" : "";
+      lines.push("", `— ${icon} ${label}${label ? ": " : ""}${d.submitter.trim()}`);
+    }
+    return lines.join("\n");
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      // Fallback
+      const ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      let ok = false;
+      try { ok = document.execCommand("copy"); } catch {}
+      document.body.removeChild(ta);
+      return ok;
+    }
+  }
+
+  function showToast(msg) {
+    $toast.textContent = msg;
+    $toast.hidden = false;
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => { $toast.hidden = true; }, 6000);
+  }
+
+  $form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!$form.reportValidity()) return;
+    const data = Object.fromEntries(new FormData($form).entries());
+    const message = buildMessage(data);
+    await copyToClipboard(message);
+    showToast(t.copied_msg);
+    $dialog.close();
+    // Open Instagram DM directly with @furkansnhrptlu.
+    window.open("https://ig.me/m/furkansnhrptlu", "_blank", "noopener");
+  });
 })();

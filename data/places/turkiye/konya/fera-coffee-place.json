@@ -1,0 +1,20 @@
+{
+  "lang": "tr",
+  "name": "FERA",
+  "country": "Türkiye",
+  "city": "Konya",
+  "address": "Karatay, Aziziye Cad.",
+  "description": "İki katlı, balkonlu kahve mekânı. Wifi yok, mobil internetle çalışmak gerekiyor.",
+  "country_i18n": { "en": "Türkiye" },
+  "city_i18n": { "en": "Konya" },
+  "description_i18n": { "en": "Two-story café with a balcony. No wifi — bring your mobile data." },
+  "type": "cafe",
+  "rating": { "wifi": 1, "power": 3, "noise": 3, "comfort": 3 },
+  "tags": ["aziziye-camii", "tatlı", "no-wifi", "balkon"],
+  "links": {
+    "google_maps": "https://share.google/Zifn7Dxc7MqNKhjhR",
+    "instagram": "https://www.instagram.com/feracoffee_",
+    "website": "https://www.konbeltas.com.tr/"
+  },
+  "submitted_by": { "platform": "instagram", "handle": "furkansnhrptlu" }
+}

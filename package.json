@@ -7,7 +7,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "validate": "node scripts/validate.mjs",
-    "dev": "node scripts/build.mjs && npx --yes serve dist"
+    "watch": "node scripts/watch.mjs",
+    "dev": "node scripts/watch.mjs & npx --yes serve dist -l 3000"
   },
   "license": "MIT",
   "engines": {

@@ -24,8 +24,9 @@
       <p class="meta">
         <span id="stats" data-i18n="loading"></span> ·
         <a href="https://github.com/furkansenharputlu/worcoffee" target="_blank" rel="noopener" data-i18n="github"></a> ·
-        <a href="https://github.com/furkansenharputlu/worcoffee/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" data-i18n="add_place"></a>
+        <a href="#" id="open-form" data-i18n="add_place"></a>
       </p>
+      <button type="button" id="open-form-btn" class="cta" data-i18n="add_place_btn"></button>
     </div>
   </header>
 
@@ -39,6 +40,7 @@
         <option value="cafe" data-i18n="type_cafe"></option>
         <option value="coworking" data-i18n="type_coworking"></option>
         <option value="library" data-i18n="type_library"></option>
+        <option value="study-spot" data-i18n="type_study_spot"></option>
         <option value="hotel-lobby" data-i18n="type_hotel_lobby"></option>
         <option value="restaurant" data-i18n="type_restaurant"></option>
         <option value="other" data-i18n="type_other"></option>
@@ -58,6 +60,7 @@
         <ul class="ratings"></ul>
         <p class="tags"></p>
         <footer class="links"></footer>
+        <p class="submitter"></p>
       </article>
     </template>
   </main>
@@ -65,10 +68,109 @@
   <footer class="site-foot">
     <div class="wrap">
       <p id="footer-text"></p>
+      <p class="disclaimer">
+        <strong data-i18n="disclaimer_title"></strong>
+        <span data-i18n="disclaimer_text"></span>
+        <a href="https://github.com/furkansenharputlu/worcoffee/blob/main/DISCLAIMER.md" target="_blank" rel="noopener" data-i18n="disclaimer_more"></a>
+      </p>
+      <p class="takedown">
+        <span data-i18n="owner_question"></span>
+        <a href="https://github.com/furkansenharputlu/worcoffee/blob/main/DISCLAIMER.md#-are-you-the-owner-of-a-place-listed-here" target="_blank" rel="noopener" data-i18n="owner_cta"></a>
+      </p>
     </div>
   </footer>
 
+  <dialog id="add-dialog" class="dialog">
+    <form id="add-form" method="dialog">
+      <header>
+        <h2 data-i18n="form_title"></h2>
+        <button type="button" class="close" id="close-form" aria-label="Close">×</button>
+      </header>
+      <a href="https://github.com/furkansenharputlu/worcoffee/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="dev-hint">
+        <span class="ic" id="dev-hint-icon"></span>
+        <span class="dev-hint-text">
+          <strong data-i18n="dev_hint"></strong>
+          <span data-i18n="dev_hint_sub"></span>
+        </span>
+        <span class="dev-hint-arrow">→</span>
+      </a>
+      <p class="intro" data-i18n="form_intro"></p>
+
+      <label><span data-i18n="form_name"></span> <em data-i18n="form_required"></em>
+        <input name="name" required />
+      </label>
+      <div class="row">
+        <label><span data-i18n="form_country"></span> <em data-i18n="form_required"></em>
+          <input name="country" required />
+        </label>
+        <label><span data-i18n="form_city"></span> <em data-i18n="form_required"></em>
+          <input name="city" required />
+        </label>
+      </div>
+      <label><span data-i18n="form_address"></span> <em data-i18n="form_required"></em>
+        <input name="address" required />
+      </label>
+      <label><span data-i18n="form_type"></span> <em data-i18n="form_optional"></em>
+        <select name="type">
+          <option value=""></option>
+          <option value="cafe" data-i18n="type_cafe"></option>
+          <option value="coworking" data-i18n="type_coworking"></option>
+          <option value="library" data-i18n="type_library"></option>
+          <option value="study-spot" data-i18n="type_study_spot"></option>
+          <option value="hotel-lobby" data-i18n="type_hotel_lobby"></option>
+          <option value="restaurant" data-i18n="type_restaurant"></option>
+          <option value="other" data-i18n="type_other"></option>
+        </select>
+      </label>
+      <label><span data-i18n="form_description"></span> <em data-i18n="form_required"></em>
+        <textarea name="description" rows="2" required></textarea>
+      </label>
+
+      <div class="ratings-grid">
+        <label><span data-i18n="form_wifi"></span>
+          <input type="number" name="wifi" min="1" max="5" required />
+        </label>
+        <label><span data-i18n="form_power"></span>
+          <input type="number" name="power" min="1" max="5" required />
+        </label>
+        <label><span data-i18n="form_noise"></span>
+          <input type="number" name="noise" min="1" max="5" required />
+        </label>
+        <label><span data-i18n="form_comfort"></span>
+          <input type="number" name="comfort" min="1" max="5" required />
+        </label>
+      </div>
+
+      <label><span data-i18n="form_maps"></span> <em data-i18n="form_required"></em>
+        <input name="maps" type="url" placeholder="https://maps.google.com/…" required />
+      </label>
+      <label><span data-i18n="form_instagram"></span> <em data-i18n="form_optional"></em>
+        <input name="instagram" type="url" placeholder="https://instagram.com/…" />
+      </label>
+      <label><span data-i18n="form_website"></span> <em data-i18n="form_optional"></em>
+        <input name="website" type="url" placeholder="https://…" />
+      </label>
+      <fieldset class="submitter">
+        <legend><span data-i18n="form_your_handle"></span> <em data-i18n="form_optional"></em></legend>
+        <div class="radios">
+          <label class="radio"><input type="radio" name="submitter_platform" value="instagram" checked /> <span>Instagram</span></label>
+          <label class="radio"><input type="radio" name="submitter_platform" value="github" /> <span>GitHub</span></label>
+          <label class="radio"><input type="radio" name="submitter_platform" value="other" /> <span data-i18n="form_other"></span></label>
+        </div>
+        <input name="submitter" placeholder="@kullanici" />
+      </fieldset>
+
+      <footer class="actions">
+        <button type="button" id="cancel-form" data-i18n="form_close"></button>
+        <button type="submit" class="primary" data-i18n="form_submit"></button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" hidden></div>
+
   <script src="i18n.js"></script>
+  <script src="icons.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

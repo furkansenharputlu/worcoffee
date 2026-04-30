@@ -1,7 +1,7 @@
 # ☕ WorCoffee
 
-> **Coffee places for remote workers, by remote workers.**
-> A community-curated, open-source list of cafés, coworking spots, libraries and hotel lobbies that are actually good for getting work done.
+> **Great places to work, study, and focus — anywhere in the world.**
+> A community-curated, open-source list of cafés, coworking spots, libraries, study spots and hotel lobbies that are actually good for getting things done. For remote workers, freelancers, students, writers, designers — anyone who works outside an office.
 
 [![Deploy site](https://github.com/furkansenharputlu/worcoffee/actions/workflows/deploy.yml/badge.svg)](https://github.com/furkansenharputlu/worcoffee/actions/workflows/deploy.yml)
 [![Validate PR](https://github.com/furkansenharputlu/worcoffee/actions/workflows/validate.yml/badge.svg)](https://github.com/furkansenharputlu/worcoffee/actions/workflows/validate.yml)
@@ -15,11 +15,11 @@
 
 ## Why?
 
-Every remote worker has the same recurring problem in a new city:
+Every remote worker, student, or freelancer has the same recurring problem in a new city:
 *"Where can I sit for 4 hours, with fast wifi, an outlet, and decent coffee?"*
 
 Google reviews don't answer this. Nomad lists are paywalled or stale.
-**WorCoffee** is a tiny, free, open data set you can extend with a single PR.
+**WorCoffee** is a tiny, free, open data set you can extend with a single PR — useful for anyone who works or studies outside an office.
 
 ## What's in a place
 
@@ -107,3 +107,11 @@ PRs for any of the above are very welcome.
 ## License
 
 MIT — see [LICENSE](LICENSE). Be kind to café owners.
+
+## Disclaimer & takedown
+
+All information on this site is **community-contributed and not verified**. The maintainers and contributors make **no warranties** about accuracy, completeness, or fitness for any purpose — use at your own risk.
+
+If you are the owner of a place listed here and would like the entry removed, corrected, or updated, please reach out via [Instagram DM](https://instagram.com/furkansnhrptlu) or [open an issue](https://github.com/furkansenharputlu/worcoffee/issues/new). We act quickly and in good faith.
+
+Full text: [DISCLAIMER.md](DISCLAIMER.md).
