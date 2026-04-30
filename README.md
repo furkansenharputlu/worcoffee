@@ -29,6 +29,13 @@ Each place is one JSON file with the things that actually matter when you work r
 - 📍 Google Maps link, 📷 Instagram, 🌐 website, 📜 menu
 - Hours, price band, tags, coordinates, type (cafe / coworking / library / hotel-lobby / …)
 
+### Multi-language by default
+
+- Contributors **write in their own language** (`"lang": "tr"`, `"de"`, `"en"`, …).
+- Visitors switch the site language with one click.
+- The site picks: viewer's language → source language → first available. So a Turkish-only entry still shows up cleanly for English visitors.
+- Country/city grouping uses the **folder path** (`turkiye/istanbul/`) so the same place appears under one country no matter which language a contributor writes in.
+
 See [`data/place.schema.json`](data/place.schema.json) for the full schema.
 
 ## How it works
@@ -76,9 +83,9 @@ npx serve dist              # open http://localhost:3000
 data/
   place.schema.json
   places/
-    turkey/istanbul/federal-coffee.json
+    turkiye/istanbul/federal-coffee.json
     united-kingdom/london/hoxton-holborn.json
-site/                       static frontend (HTML/CSS/JS, no framework)
+site/                       static frontend (HTML/CSS/JS, no framework, i18n)
 scripts/
   build.mjs                 aggregates data + copies site → dist/
   validate.mjs              schema check used by CI

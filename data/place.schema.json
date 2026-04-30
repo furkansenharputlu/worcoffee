@@ -5,11 +5,17 @@
   "additionalProperties": false,
   "required": ["name", "country", "city", "address", "rating"],
   "properties": {
-    "name": { "type": "string", "minLength": 1 },
-    "country": { "type": "string", "minLength": 2 },
+    "lang": { "type": "string", "pattern": "^[a-z]{2}(-[A-Z]{2})?$", "description": "Source language of the text fields. Default 'en'. Examples: 'en', 'tr', 'de'." },
+    "name": { "type": "string", "minLength": 1, "description": "Place name in the source language." },
+    "name_i18n": { "type": "object", "additionalProperties": { "type": "string" }, "description": "Translations of name keyed by language code." },
+    "country": { "type": "string", "minLength": 2, "description": "Country in the source language. Group identity comes from the folder path." },
+    "country_i18n": { "type": "object", "additionalProperties": { "type": "string" } },
     "city": { "type": "string", "minLength": 1 },
+    "city_i18n": { "type": "object", "additionalProperties": { "type": "string" } },
     "address": { "type": "string", "minLength": 1 },
+    "address_i18n": { "type": "object", "additionalProperties": { "type": "string" } },
     "description": { "type": "string" },
+    "description_i18n": { "type": "object", "additionalProperties": { "type": "string" } },
     "type": {
       "type": "string",
       "enum": ["cafe", "coworking", "library", "hotel-lobby", "restaurant", "other"]
@@ -19,13 +25,13 @@
       "additionalProperties": false,
       "required": ["wifi", "power", "noise", "comfort"],
       "properties": {
-        "wifi":    { "type": "integer", "minimum": 1, "maximum": 5, "description": "1=poor, 5=fiber-fast" },
-        "power":   { "type": "integer", "minimum": 1, "maximum": 5, "description": "1=no outlets, 5=plenty" },
+        "wifi":    { "type": "integer", "minimum": 1, "maximum": 5 },
+        "power":   { "type": "integer", "minimum": 1, "maximum": 5 },
         "noise":   { "type": "integer", "minimum": 1, "maximum": 5, "description": "1=loud, 5=quiet" },
-        "comfort": { "type": "integer", "minimum": 1, "maximum": 5, "description": "1=bad chairs, 5=ergonomic" }
+        "comfort": { "type": "integer", "minimum": 1, "maximum": 5 }
       }
     },
-    "hours": { "type": "string", "description": "Free-form opening hours, e.g. 'Mon-Fri 8-20'" },
+    "hours": { "type": "string" },
     "price": { "type": "string", "enum": ["$", "$$", "$$$", "$$$$"] },
     "tags":  { "type": "array", "items": { "type": "string" } },
     "links": {
@@ -47,6 +53,6 @@
         "lng": { "type": "number", "minimum": -180, "maximum": 180 }
       }
     },
-    "submitted_by": { "type": "string", "description": "GitHub handle of contributor" }
+    "submitted_by": { "type": "string" }
   }
 }

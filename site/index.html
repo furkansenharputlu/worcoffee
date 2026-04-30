@@ -13,29 +13,35 @@
 <body>
   <header class="hero">
     <div class="wrap">
+      <div class="lang-switch">
+        <select id="lang" aria-label="Language">
+          <option value="en">🇬🇧 English</option>
+          <option value="tr">🇹🇷 Türkçe</option>
+        </select>
+      </div>
       <h1>☕ WorCoffee</h1>
-      <p class="tag">Coffee places for remote workers, by remote workers.</p>
+      <p class="tag" data-i18n="tagline"></p>
       <p class="meta">
-        <span id="stats">Loading…</span> ·
-        <a href="https://github.com/furkansenharputlu/worcoffee" target="_blank" rel="noopener">GitHub</a> ·
-        <a href="https://github.com/furkansenharputlu/worcoffee/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Add a place</a>
+        <span id="stats" data-i18n="loading"></span> ·
+        <a href="https://github.com/furkansenharputlu/worcoffee" target="_blank" rel="noopener" data-i18n="github"></a> ·
+        <a href="https://github.com/furkansenharputlu/worcoffee/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" data-i18n="add_place"></a>
       </p>
     </div>
   </header>
 
   <main class="wrap">
     <section class="filters">
-      <input id="q" type="search" placeholder="Search by name, tag, address…" autocomplete="off" />
-      <select id="country"><option value="">All countries</option></select>
-      <select id="city"><option value="">All cities</option></select>
+      <input id="q" type="search" autocomplete="off" data-i18n-attr="placeholder:search_placeholder" />
+      <select id="country"><option value="" data-i18n="all_countries"></option></select>
+      <select id="city"><option value="" data-i18n="all_cities"></option></select>
       <select id="type">
-        <option value="">All types</option>
-        <option>cafe</option>
-        <option>coworking</option>
-        <option>library</option>
-        <option>hotel-lobby</option>
-        <option>restaurant</option>
-        <option>other</option>
+        <option value="" data-i18n="all_types"></option>
+        <option value="cafe" data-i18n="type_cafe"></option>
+        <option value="coworking" data-i18n="type_coworking"></option>
+        <option value="library" data-i18n="type_library"></option>
+        <option value="hotel-lobby" data-i18n="type_hotel_lobby"></option>
+        <option value="restaurant" data-i18n="type_restaurant"></option>
+        <option value="other" data-i18n="type_other"></option>
       </select>
     </section>
 
@@ -58,13 +64,11 @@
 
   <footer class="site-foot">
     <div class="wrap">
-      <p>
-        Open source · MIT licensed ·
-        Not on GitHub? DM <a href="https://instagram.com/furkansnhrptlu" target="_blank" rel="noopener">@furkansnhrptlu</a> on Instagram and we'll add your place.
-      </p>
+      <p id="footer-text"></p>
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
